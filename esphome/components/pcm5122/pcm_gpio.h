@@ -13,7 +13,11 @@ class PCMGPIOPin : public GPIOPin, public Parented<PCM5122> {
   void pin_mode(gpio::Flags flags) override {}
   bool digital_read() override;
   void digital_write(bool value) override;
-  std::string dump_summary() const override { return ""; };
+  size_t dump_summary(char *buffer, size_t len) const override {
+    if (len > 0)
+      buffer[0] = '\0';
+    return 0;
+  }
 
   void set_pin(uint8_t pin) { this->pin_ = pin; }
   void set_inverted(bool inverted) { this->inverted_ = inverted; }
