@@ -38,7 +38,8 @@ bool SendspinDecoder::process_header(const uint8_t *data, size_t data_size, Chun
 
       size_t bytes_consumed = 0;
       size_t samples_decoded = 0;
-      auto result = this->flac_decoder_->decode(data, data_size, nullptr, 0, bytes_consumed, samples_decoded);
+      auto result = this->flac_decoder_->decode(data, data_size, static_cast<uint8_t *>(nullptr), 0, bytes_consumed,
+                                                samples_decoded);
 
       if (result == micro_flac::FLAC_DECODER_NEED_MORE_DATA) {
         ESP_LOGW(TAG, "Need more data to decode FLAC header");
