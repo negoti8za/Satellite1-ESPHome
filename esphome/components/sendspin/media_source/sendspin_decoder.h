@@ -49,7 +49,7 @@ class SendspinDecoder {
  protected:
   bool decode_dummy_header_(const uint8_t *data, size_t data_size, audio::AudioStreamInfo *stream_info);
 
-  std::unique_ptr<esp_audio_libs::flac::FLACDecoder> flac_decoder_;
+  std::unique_ptr<micro_flac::FLACDecoder> flac_decoder_;
   OpusDecoder *opus_decoder_{nullptr};
   size_t opus_decoder_size_{0};
 
