@@ -168,6 +168,7 @@ binary_sensor:
                                                   sound_file: "center_button_press_sound"
                                               - delay: 300ms
                                               - voice_assistant.start:
+                                                  wake_word: "hey_jarvis"
       # Double Click
       #  . Exposed as an event entity. To be used in automations inside Home Assistant
       - timing:
