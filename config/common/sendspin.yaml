@@ -1,14 +1,3 @@
-# NOTE: media_source/sendspin used to be pulled directly from the unmerged
-# kahrendt/esphome PR #14933 branch via external_components, but that pinned
-# commit's sendspin_decoder.h had a broken `#include <flac_decoder.h>` (the
-# micro-flac library nests it under micro_flac/flac_decoder.h) which fails to
-# compile against current ESPHome. Both components have been vendored into
-# this fork's own esphome/components/ tree (with that include path fixed) and
-# are now sourced from the main external_components entry in
-# components.external.yaml instead.
-
-http_request:
-
 sendspin:
   id: sendspin_hub
   task_stack_in_psram: true
