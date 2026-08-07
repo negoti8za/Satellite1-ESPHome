@@ -38,6 +38,7 @@ micro_wake_word:
   models:
     - model: https://fph-firmware-assets.s3.us-east-1.amazonaws.com/wake-word/hey_jarvis.json
       id: hey_jarvis
+      probability_cutoff: 0.85
     - model: https://fph-firmware-assets.s3.us-east-1.amazonaws.com/wake-word/okay_nabu.json
       id: okay_nabu
     - model: https://fph-firmware-assets.s3.us-east-1.amazonaws.com/wake-word/stop.json
