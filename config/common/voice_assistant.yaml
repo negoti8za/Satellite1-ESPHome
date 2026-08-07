@@ -104,8 +104,8 @@ voice_assistant:
   micro_wake_word: mww
   use_wake_word: false
   noise_suppression_level: 2
-  auto_gain: 5 dbfs
-  volume_multiplier: 1
+  auto_gain: 10 dbfs
+  volume_multiplier: 2.0
   on_client_connected:
     - lambda: id(init_in_progress) = false;
     - micro_wake_word.start:
@@ -262,3 +262,47 @@ select:
           id(okay_nabu).set_probability_cutoff(143);    // 0.56 -> 0.751 FAPH on DipCo
           id(hey_jarvis).set_probability_cutoff(212);   // 0.83 -> 1.502 FAPH on DipCo
         }
+
+number:
+  - platform: template
+    name: "Voice Noise Suppression"
+    id: va_noise_suppression
+    min_value: 0
+    max_value: 4
+    step: 1
+    initial_value: 2
+    restore_value: true
+    entity_category: config
+    icon: "mdi:microphone-off"
+    optimistic: true
+    on_value:
+      - lambda: id(va).set_noise_suppression_level((uint8_t)x);
+
+  - platform: template
+    name: "Voice Auto Gain"
+    id: va_auto_gain
+    min_value: 0
+    max_value: 31
+    step: 1
+    initial_value: 10
+    restore_value: true
+    unit_of_measurement: dBFS
+    entity_category: config
+    icon: "mdi:microphone"
+    optimistic: true
+    on_value:
+      - lambda: id(va).set_auto_gain((uint8_t)x);
+
+  - platform: template
+    name: "Voice Volume Multiplier"
+    id: va_volume_multiplier
+    min_value: 1.0
+    max_value: 4.0
+    step: 0.1
+    initial_value: 2.0
+    restore_value: true
+    entity_category: config
+    icon: "mdi:microphone-plus"
+    optimistic: true
+    on_value:
+      - lambda: id(va).set_volume_multiplier(x);
